@@ -20,6 +20,7 @@ justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#ffdde1,#ee9ca7);
 overflow:hidden;
+position:relative;
 }
 
 /* Floating hearts */
@@ -45,6 +46,7 @@ border-radius:25px;
 box-shadow:0 15px 40px rgba(0,0,0,0.15);
 text-align:center;
 position:relative;
+z-index:2;
 }
 
 h1{
@@ -57,10 +59,11 @@ color:#6a040f;
 margin-bottom:20px;
 }
 
+/* Buttons */
 .buttons{
 margin-top:30px;
 position:relative;
-height:70px;
+height:80px;
 }
 
 button{
@@ -75,7 +78,7 @@ transition:0.3s;
 #yesBtn{
 background:#ff4d6d;
 color:white;
-margin-right:15px;
+margin-right:20px;
 }
 
 #yesBtn:hover{
@@ -87,6 +90,8 @@ background:#e63956;
 background:#ffe5ec;
 color:#c9184a;
 position:absolute;
+left:160px;   /* Starting position FIXED */
+top:0;
 }
 </style>
 </head>
@@ -94,7 +99,7 @@ position:absolute;
 <body>
 
 <div class="card">
-<h1 id="question">Anaya 💖</h1>
+<h1>Anaya 💖</h1>
 <p id="subtext">Will you be my Valentine? 💘</p>
 
 <div class="buttons">
@@ -107,30 +112,28 @@ position:absolute;
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const subtext = document.getElementById("subtext");
-const buttons = document.querySelector(".buttons");
+const container = document.querySelector(".buttons");
 
 let messages = [
 "Anaya... are you sure? 🥺",
-"Think again, pretty please? 💗",
+"Think again pretty please? 💗",
 "I'll bring chocolates 🍫😌",
 "I'll plan the cutest date ever 🌸",
-"Okay okay fine... but I know you'll say YES 😏💖"
+"Okay fine... but I know you'll say YES 😏💖"
 ];
 
 let count = 0;
 
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton);
-
+// Make NO button run away
 function moveButton() {
-let containerRect = buttons.getBoundingClientRect();
-let btnRect = noBtn.getBoundingClientRect();
+const containerRect = container.getBoundingClientRect();
+const btnRect = noBtn.getBoundingClientRect();
 
-let maxX = containerRect.width - btnRect.width;
-let maxY = containerRect.height - btnRect.height;
+const maxX = containerRect.width - btnRect.width;
+const maxY = containerRect.height - btnRect.height;
 
-let randomX = Math.random() * maxX;
-let randomY = Math.random() * maxY;
+const randomX = Math.random() * maxX;
+const randomY = Math.random() * maxY;
 
 noBtn.style.left = randomX + "px";
 noBtn.style.top = randomY + "px";
@@ -141,12 +144,37 @@ count++;
 }
 }
 
-yesBtn.addEventListener("click", () => {
+noBtn.addEventListener("mouseenter", moveButton);
+
+// YES button works properly
+yesBtn.addEventListener("click", function(){
 document.body.innerHTML = `
 <div style="height:100vh;display:flex;justify-content:center;align-items:center;
 background:linear-gradient(135deg,#ffdde1,#ee9ca7);flex-direction:column;text-align:center;">
 <h1 style="font-size:3em;color:#c9184a;">ANAYA SAID YES!!! 💖💖💖</h1>
 <p style="font-size:1.5em;margin-top:20px;color:#6a040f;">
 Best decision ever 😘✨<br><br>
-Our Valentine’s Day is
-  
+Valentine’s Day just became legendary 💕
+</p>
+</div>
+`;
+});
+
+// Floating hearts
+function createHeart(){
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "💗";
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+document.body.appendChild(heart);
+
+setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
