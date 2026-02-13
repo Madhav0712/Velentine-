@@ -2,38 +2,148 @@
 <html>
 <head>
 <title>A Question for Anaya ❤️</title>
-</head>
-<body style="margin:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff9ec4,#ffc3e6);font-family:sans-serif;overflow:hidden;">
 
-<h1 style="color:white;text-align:center;">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#f8cdda,#fbd3e9);
+overflow:hidden;
+position:relative;
+}
+
+/* Floating pastel blobs */
+.blob{
+position:absolute;
+border-radius:50%;
+filter:blur(60px);
+opacity:0.5;
+animation:float 8s infinite ease-in-out alternate;
+}
+
+.blob1{
+width:300px;
+height:300px;
+background:#ffd6e8;
+top:-80px;
+left:-80px;
+}
+
+.blob2{
+width:250px;
+height:250px;
+background:#d6e6ff;
+bottom:-70px;
+right:-70px;
+animation-delay:2s;
+}
+
+.blob3{
+width:200px;
+height:200px;
+background:#e4ffd6;
+top:60%;
+left:10%;
+animation-delay:4s;
+}
+
+@keyframes float{
+from{transform:translateY(0px);}
+to{transform:translateY(40px);}
+}
+
+/* Card */
+.card{
+background:rgba(255,255,255,0.25);
+padding:50px 60px;
+border-radius:25px;
+backdrop-filter:blur(20px);
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+text-align:center;
+position:relative;
+z-index:2;
+}
+
+h1{
+color:#5e4b56;
+font-weight:500;
+line-height:1.6;
+}
+
+/* Buttons */
+.buttons{
+margin-top:35px;
+position:relative;
+}
+
+button{
+padding:12px 28px;
+font-size:16px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+
+.yesBtn{
+background:#f7a8c4;
+color:white;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.yesBtn:hover{
+transform:scale(1.1);
+background:#f48fb1;
+}
+
+#noBtn{
+background:white;
+color:#d17b9f;
+position:absolute;
+margin-left:15px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+#noBtn:hover{
+transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<div class="card">
+<h1>
 Anaya 💖<br><br>
 Will you be my Valentine?
 </h1>
 
-<div style="margin-top:30px;">
-<button onclick="document.body.innerHTML='<h1 style=&quot;color:white;font-size:3em;text-align:center;&quot;>Anaya said YES!!! 💘✨<br><br>Best decision ever 😘</h1>'"
-style="padding:12px 24px;font-size:18px;border:none;border-radius:10px;background:#ff4d6d;color:white;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+<div class="buttons">
+<button class="yesBtn"
+onclick="document.body.innerHTML='<h1 style=&quot;font-size:3em;color:#5e4b56;text-align:center;&quot;>Anaya said YES!!! 💘✨<br><br>Best decision ever 😘</h1>'">
 Yes 💘
 </button>
 
-<button id="noBtn"
-style="padding:12px 24px;font-size:18px;border:none;border-radius:10px;background:white;color:#ff4d6d;margin-left:15px;position:absolute;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+<button id="noBtn">
 No 🙈
 </button>
 </div>
+</div>
 
 <script>
-let no=document.getElementById('noBtn');
-no.addEventListener('mouseover',move);
-no.addEventListener('click',move);
-
-function move(){
-let x=Math.random()*(window.innerWidth-120);
-let y=Math.random()*(window.innerHeight-60);
-no.style.left=x+'px';
-no.style.top=y+'px';
-}
-</script>
-
-</body>
-</html>
+let no=document.getElementById('
